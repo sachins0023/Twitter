@@ -10,9 +10,9 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(User,UserAdmin)
 
 class TweetAdmin(admin.ModelAdmin):
-    list_display = ('short_text', 'user', 'text', 'date_time_created', 'edited', 'date_time_updated', 'deleted',)
-    list_filter = ('edited', 'deleted',)
-    ordering = ('date_time_updated',)
+    list_display = ('short_text', 'user', 'text', 'date_time_created', 'date_time_updated', 'delete_tweet',)
+    list_filter = ('delete_tweet',)
+    ordering = ('-date_time_updated',)
     search_fields = ['user', 'text',]
     
 admin.site.register(Tweet, TweetAdmin)

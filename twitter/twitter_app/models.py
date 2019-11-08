@@ -15,13 +15,13 @@ class Tweet(models.Model):
     text = models.CharField(max_length=140)
     date_time_created = models.DateTimeField(auto_now_add=True) #Background field
     date_time_updated = models.DateTimeField(auto_now=True)     #Background field
-    deleted = models.BooleanField(default = False)
+    delete_tweet = models.BooleanField(default = False)
     
-    def edited(self):
-        if (self.date_time_created-self.date_time_updated) > datetime.timedelta(seconds=1):
-            return True
-        else:
-            return False
+    # def edited(self):
+    #     if (self.date_time_created-self.date_time_updated) > datetime.timedelta(seconds=1):
+    #         return 'Yes'
+    #     else:
+    #         return 'No'
         
     def short_text(self):
         short_text = self.text[:10]+'...'
