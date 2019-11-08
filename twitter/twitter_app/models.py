@@ -23,11 +23,11 @@ class Tweet(models.Model):
         else:
             return False
         
-    def get_short_text(self):
+    def short_text(self):
         short_text = self.text[:10]+'...'
         return short_text
     
     def __str__(self):
-        return self.get_short_text()
+        return self.short_text()
     
     
