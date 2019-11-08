@@ -15,4 +15,7 @@ class Tweet(models.Model):
     date = models.DateField(default=date)
     time = models.TimeField(default=date)
     
+    def __str__(self):
+        return self.text[:10]+'...'
+    
     
