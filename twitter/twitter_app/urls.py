@@ -12,4 +12,5 @@ urlpatterns = [
     path('user/create/',api_create_user_view, name='user_create_list'),
     path('tweet/create/',api_create_tweet_view, name='tweet_create_list'),
     path('tweet/<int:id>/update/', api_update_tweet_view, name='tweet_update_list'),
+    path('tweet/<int:id>/delete/', api_soft_delete_tweet_view, name='tweet_id_delete_list'),
 ]
