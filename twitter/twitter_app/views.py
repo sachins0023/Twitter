@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from twitter_app.models import User, Tweet
-from twitter_app.serializers import UserSerializer, TweetSerializer
+from twitter_app.serializers import UserSerializer, TweetSerializer, TweetSoftDeleteSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -84,4 +84,19 @@ def api_update_tweet_view(request, id):
                 data['Success'] = 'Updated Successfully'
                 return Response(serializer.data)
             return Response(serializer.errors, status.HTTP_406_NOT_ACCEPTABLE)
-            
+
+@api_view(['PUT',])
+def api_soft_delete_tweet_view(request, id):
+    try:
+        user = Tweet.objects.get(id=id, delete_tweet=False)
+    except Tweet.DoesNotExist:
+        return Response(status.HTTP_404_NOT_FOUND)
+    else:
+        if request.method == 'PUT':
+            serializer = TweetSoftDeleteSerializer(user, data=request.data)
+            if serializer.is_valid():
+                data = {}
+                serializer.save()
+                data['Success'] = 'Updated Successfully'
+                return Response(serializer.data)
+            return Response(serializer.errors, status.HTTP_406_NOT_ACCEPTABLE)
