@@ -4,7 +4,7 @@ import datetime
 # Create your models here.
 
 class User(models.Model):
-    email = models.EmailField(max_length=254, primary_key=True)
+    email = models.EmailField(max_length=254, unique=True)
     name = models.CharField(max_length=50)
     
     def __str__(self):

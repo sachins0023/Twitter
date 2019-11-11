@@ -1,13 +1,12 @@
 from rest_framework import serializers
 from twitter_app.models import User, Tweet
 
-class UserSerializers(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'name',)
+        fields = ('id','name', 'email',)
     
-class TweetSerializers(serializers.ModelSerializer):
-    user = UserSerializers()
+class TweetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tweet
-        fields = ('short_text', 'user', 'text', 'date_time_created', 'date_time_updated', 'delete_tweet',)
+        fields = ('id','short_text', 'user', 'text', 'date_time_created', 'date_time_updated', 'delete_tweet',)
