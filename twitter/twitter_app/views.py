@@ -28,7 +28,7 @@ def api_user_id_list_view(request, id):
 
 @api_view(['GET',])
 def api_tweet_list_view(request):
-    tweet = Tweet.objects.all()
+    tweet = Tweet.objects.filter(delete_tweet=False)
     if request.method == 'GET':
         serializer = TweetSerializer(tweet, many=True)
         return Response(serializer.data)
@@ -37,7 +37,7 @@ def api_tweet_list_view(request):
 @api_view(['GET',])
 def api_tweet_id_list_view(request, id):
     try:
-        user = Tweet.objects.get(id=id)
+        user = Tweet.objects.get(id=id, delete_tweet=False)
     except User.DoesNotExist:
         return Response(status.HTTP_404_NOT_FOUND)
     else:
@@ -72,7 +72,7 @@ def api_create_tweet_view(request):
 @api_view(['PUT',])
 def api_update_tweet_view(request, id):
     try:
-        user = Tweet.objects.get(id=id)
+        user = Tweet.objects.get(id=id, delete_tweet=False)
     except Tweet.DoesNotExist:
         return Response(status.HTTP_404_NOT_FOUND)
     else:
