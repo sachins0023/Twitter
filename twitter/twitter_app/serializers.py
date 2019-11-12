@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TweetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tweet
-        fields = ('id','short_text', 'user', 'text', 'date_time_created', 'date_time_updated', 'delete_tweet',)
+        fields = ('id','short_text', 'user', 'text', 'date_time_created', 'date_time_updated',)
         
 class TweetSoftDeleteSerializer(serializers.ModelSerializer):
     class Meta:
