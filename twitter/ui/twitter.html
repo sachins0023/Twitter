@@ -219,8 +219,21 @@
                     </svg>
                 </div>
             </div>
-            <div class='body-wrapper'>
-
+            <div id='body-wrapper' class='body-wrapper'>
+                <button id='show-tweets-button' class='show-tweets-button'>
+                    <a href='#'>
+                        <div class='show-tweets-text'>Show Tweets</div>
+                    </a>
+                </button>
+                <div class='post-tweet'>
+                    <input type='text' placeholder="Enter your tweet...">
+                    <a href='#'>
+                        <button id='post-tweets-button' class='post-tweets-button'>
+                            <div class='post-tweets-text'>Post</div>
+                        </button>
+                    </a>
+                </div>
+                <div id='tweet-ui'></div>
             </div>
         </div>
 
@@ -406,6 +419,7 @@
             </div>
         </div>
     </div>
+    <script src='script.js'></script>
 </body>
 
 </html>
