@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from twitter_app.models import User, Tweet
-from twitter_app.serializers import UserSerializer, TweetSerializer, TweetSoftDeleteSerializer
+from twitter_app.serializers import UserSerializer, TweetSerializer, TweetSoftDeleteSerializer, TweetCreateSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -60,13 +60,13 @@ def api_create_user_view(request):
 def api_create_tweet_view(request):
     if request.method == 'POST':
         print(request.data)
-        serializer = TweetSerializer(data=request.data)
+        serializer = TweetCreateSerializer(data=request.data)
         print(serializer)
         if serializer.is_valid():
             serializer.save()
             data = {}
             data['Success'] = 'Created Successfully'
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
         
 @api_view(['PUT',])

@@ -16,7 +16,6 @@ body {
     margin-top: 10px;
     width: 1200px;
     flex-direction: row;
-    position: fixed;
 }
 
 .left {

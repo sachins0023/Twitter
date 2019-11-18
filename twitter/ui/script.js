@@ -22,11 +22,11 @@ function sendResponse() {
             let tweets = JSON.parse(tweetsRequest.responseText);
             for (var i = 0; i < tweets.length; i++) {
                 let tweet = tweets[i];
-                bodyWrapper.insertAdjacentHTML('beforeend', "<div uiclass='ui-tweet'>\
+                bodyWrapper.insertAdjacentHTML('afterbegin', "<div uiclass='ui-tweet'>\
                 <div class='ui-tweet-top'>\
                 <div class='ui-tweet-user-img'></div>\
                 <div class='ui-tweet-user-details'>\
-                <div class='ui-tweet-user-name'>" + tweet.user_name + "</div>\
+                <div class='ui-tweet-user-name'>" + tweet.user.name + "</div>\
                 <div class='ui-tweet-tweet-time'>" + tweet.date_time_updated + "</div>\
                 </div>\
                 </div>\
@@ -35,6 +35,38 @@ function sendResponse() {
             }
         } else {
             alert("Error occured!");
+        }
+    }
+}
+
+var post_tweet = document.getElementById('post-tweets-button');
+post_tweet.addEventListener('click', sendPostRequest);
+
+let postRequest;
+
+function sendPostRequest() {
+    postRequest = new XMLHttpRequest();
+    if (!postRequest) {
+        alert("Could not make request!");
+        return false;
+    }
+    postTweet = document.getElementById('tweet-text').value;
+    postRequest.onreadystatechange = ShowPostRequestStatus;
+    postRequest.open('POST', "http://127.0.0.1:8000/tweet/create/")
+    postRequest.setRequestHeader("content-type", "application/json;charset=UTF-8");
+    let body = JSON.stringify({
+        user: 1,
+        text: postTweet,
+    });
+    postRequest.send(body);
+}
+
+function ShowPostRequestStatus() {
+    if (postRequest.readyState === XMLHttpRequest.DONE) {
+        if (postRequest.status === 201) {
+            alert("Tweet successful!");
+        } else {
+            alert("Tweet failed!");
         }
     }
 }
