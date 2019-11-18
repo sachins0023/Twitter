@@ -7,10 +7,17 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id','name', 'email',)
     
 class TweetSerializer(serializers.ModelSerializer):
-    user_name = serializers.ReadOnlyField(source='user.name')
+    # user_name = serializers.ReadOnlyField(source='user.name')
+    user = UserSerializer()
     class Meta:
         model = Tweet
-        fields = ('id', 'user_name', 'text', 'date_time_created', 'date_time_updated',)
+        fields = ('id', 'user', 'text', 'date_time_created', 'date_time_updated',)
+
+class TweetCreateSerializer(serializers.ModelSerializer):
+    # user_name = serializers.ReadOnlyField(source='user.name')
+    class Meta:
+        model = Tweet
+        fields = ('id', 'user', 'text', 'date_time_created', 'date_time_updated',)
         
 class TweetSoftDeleteSerializer(serializers.ModelSerializer):
     class Meta:
