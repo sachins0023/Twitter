@@ -33,4 +33,6 @@ Tweet also has a short_text function that returns the first 10 characters of you
 Serializers are created : UserSerializer, TweetSerializer, TweetDeleteSerializer
 User and Tweet model data are serialized and deserialized. In TweetSerializer everything except delete_tweet is accessible and in TweetDeleteSerializer, only delete_tweet is accessible. So TweetDeleteSerializer is specifically built for the soft-delete function
 
-In views.py we have the different 
+In views.py we have the different api views which are later on passed to the urls for easy access. 
+
+Front end also created with HTML, CSS, ReactJS
