@@ -35,4 +35,4 @@ User and Tweet model data are serialized and deserialized. In TweetSerializer ev
 
 In views.py we have the different api views which are later on passed to the urls for easy access. 
 
-Front end also created with HTML, CSS, ReactJS
+Front end also created with HTML, CSS, AJAX
